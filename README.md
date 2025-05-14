@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/2a950ced-0eea-4fc5-b338-aba64ea30df9)
 # Hydrogen Supply Chain Control Strategy Comparison
 
 ## Overview
