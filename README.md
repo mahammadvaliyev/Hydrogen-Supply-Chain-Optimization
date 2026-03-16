@@ -3,53 +3,102 @@
 
 ## Overview
 
-This project presents a **comparative analysis** of two control strategies for optimizing the operation of a **solar-powered hydrogen supply chain**:
+Hydrogen supply chains are expected to play a key role in **future low-carbon energy systems**, but their operation is challenged by uncertainty in **renewable generation, electricity prices, and hydrogen demand**, as well as engineering constraints in **electrolyzers, storage systems, and grid interaction**.
 
-- **Model Predictive Control (MPC)**
+This project compares **four operational control strategies** for a renewable-powered hydrogen supply chain:
+
 - **Rule-Based Control (RBC)**
+- **Model Predictive Control (MPC)**
+- **Reinforcement Learning without forecasts (RL-NF)**
+- **Reinforcement Learning with forecast-augmented observations (RL-F)**
 
-The supply chain system includes:
-- Renewable electricity input (solar)
-- Battery energy storage
-- Hydrogen production via electrolysis
-- Hydrogen storage and sales
+The simulated system includes:
 
-## Objective
+- Solar power generation  
+- Battery storage  
+- Hydrogen production via electrolysis  
+- Hydrogen storage and sales  
+- Grid electricity interaction  
 
-Evaluate and compare the performance of MPC and RBC strategies using a **Python-based simulation framework**, under identical time-varying conditions of:
-- Solar availability
-- Electricity pricing
-- Hydrogen demand
-
-## Methodology
-
-### Model Predictive Control (MPC)
-- Utilizes **forecasted disturbances** and **rolling-horizon optimization**.
-- Allocates energy resources **cost-effectively** while respecting system constraints.
-
-### Rule-Based Control (RBC)
-- Uses **fixed heuristic rules**.
-- Operates **reactively** without predictive capability.
-
-## Key Findings
-
-- **MPC**:
-  - Achieves **higher cost-efficiency**.
-  - Avoids **expensive grid electricity**.
-  - Aligns production with demand.
-  - Maximizes hydrogen utilization.
-
-- **RBC**:
-  - Simpler but **inefficient**.
-  - Suffers from **overproduction** and **high energy waste**.
-  - Incurs **financial losses** due to excessive grid usage.
-
-- Both strategies show **limited battery engagement**, suggesting room for improvement in **battery dispatch strategies**.
-
-## Conclusion
-
-This study highlights the benefits of **predictive, optimization-based control** in managing hydrogen systems under uncertainty. It also establishes a baseline for **future research** in **adaptive, data-driven methods**, such as **reinforcement learning**, to further improve control performance.
+All controllers are evaluated in a **unified, physically consistent simulation framework**.
 
 ---
 
-*For more details, see the [full report](./report.pdf) or explore the [codebase](./src).*
+## Objective
+
+Evaluate control strategies under identical conditions of:
+
+- **Solar availability**
+- **Electricity prices**
+- **Hydrogen demand**
+
+Comparison focuses on:
+
+- Economic performance  
+- Hydrogen utilization  
+- Grid dependence  
+- Operational feasibility  
+
+---
+
+## Methodology
+
+### Rule-Based Control (RBC)
+
+- Fixed heuristic dispatch rules  
+- Reactive operation without forecasts  
+- Baseline control strategy  
+
+### Model Predictive Control (MPC)
+
+- Rolling-horizon optimization using forecasts  
+- Explicit system constraints (electrolyzer limits, storage dynamics, grid limits, renewable curtailment)  
+- Cost-optimal dispatch planning  
+
+### Reinforcement Learning (RL-NF)
+
+- Learns control policies from interaction  
+- Uses only current system states  
+- No predictive information  
+
+### Reinforcement Learning (RL-F)
+
+- RL with **forecast-augmented observations**  
+- Evaluates learning-based use of predictive signals  
+
+---
+
+## Key Findings
+
+- **MPC**
+  - Highest economic performance  
+  - Lower grid dependence  
+  - Near-perfect hydrogen utilization  
+
+- **RBC**
+  - Operationally feasible but inefficient  
+  - High grid usage  
+  - ~80% hydrogen utilization  
+
+- **RL-NF**
+  - Robust and competitive performance  
+  - Significant improvement over RBC  
+
+- **RL-F**
+  - No consistent improvement over RL-NF  
+  - Forecast noise complicates learning  
+
+---
+
+## Conclusion
+
+This study provides a **unified benchmark comparison** of heuristic, optimization-based, and learning-based control strategies for hydrogen supply chains.
+
+Key insights:
+
+- **RBC:** simple baseline but economically inefficient  
+- **MPC:** best overall performance through forecast-based optimization  
+- **RL-NF:** robust learning-based alternative under uncertainty  
+- **RL-F:** forecast integration remains challenging for RL  
+
+The framework establishes a **structured foundation for future research**, including **hybrid MPC–RL control and scalable hydrogen system operation**.
